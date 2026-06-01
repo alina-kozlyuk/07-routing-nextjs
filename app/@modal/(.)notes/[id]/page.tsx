@@ -1,13 +1,17 @@
-import NotePreviewModal from "@/components/NotePreviewModal/NotePreviewModal";
-import { fetchNoteById } from "@/lib/api";
+import { fetchNoteById } from '@/lib/api';
+import NotePreviewClient from './NotePreview.client';
 
 type NotePreviewPageProps = {
-    params: Promise<{ id: string; }>;
+  params: Promise<{
+    id: string;
+  }>;
 };
 
-export default async function NotePreviewPage({params}: NotePreviewPageProps) {
-    const { id } = await params;
-    const note = await fetchNoteById(id);
+export default async function NotePreviewPage({
+  params,
+}: NotePreviewPageProps) {
+  const { id } = await params;
+  const note = await fetchNoteById(id);
 
-  return <NotePreviewModal note={note} />;
+  return <NotePreviewClient note={note} />;
 }
